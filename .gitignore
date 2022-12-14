@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/imgui-menu-design/output/application.exe
+/Intermediate
+/output
