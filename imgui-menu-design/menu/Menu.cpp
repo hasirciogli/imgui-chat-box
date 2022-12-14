@@ -184,6 +184,8 @@ void Menu::runCustomGui(LPDIRECT3DDEVICE9 pDevice, bool param) {
 				item.message = DDKmessage;
 
 				chatboxItems.push_back(item);
+
+				DDKmessage[0] = {};
 			}
 		}
 		ImGui::EndChild();
