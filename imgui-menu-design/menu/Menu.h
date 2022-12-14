@@ -9,7 +9,7 @@
 #include "../imgui/imgui_impl_win32.h" 
 
 namespace Menu
-{
+{ 
 	namespace settings {
 		inline bool isOpened = true;
 		inline int ui_width = 780;
