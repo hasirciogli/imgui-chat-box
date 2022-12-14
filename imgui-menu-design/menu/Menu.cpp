@@ -60,8 +60,8 @@ bool Spinner(const char* label, float radius, int thickness, const ImU32& color)
 
 struct ChatboxItem
 {
-	const char* name = "";
-	const char* message = "";
+	std::string name = "";
+	std::string message = "";
 	ImVec4 chatColor;
 	ImVec4 nameColor;
 };
@@ -69,27 +69,36 @@ struct ChatboxItem
 char DDKmessage[200] = {};
 
 std::list<ChatboxItem> chatboxItems;
-
+string convertToString(char* a, int size)
+{
+	int i;
+	string s = "";
+	for (i = 0; i < size; i++) {
+		s = s + a[i];
+	}
+	return s;
+}
 
 void renderChatBoxItem(ChatboxItem item, std::string cName)
 {
+	
 	PushStyleVar(ImGuiStyleVar_ChildRounding, 6);
 	{
 		ImGui::BeginChild(cName.c_str(), ImVec2(430, 55), false);
 		{
 			imspaceMacro(0, 5);
-			ImGui::BeginChild("#chatbox-item-title", ImVec2(430, 20), false);
+			ImGui::BeginChild(string("#chatbox-item-title" + cName).c_str(), ImVec2(430, 20), false);
 			{
 				imspaceMacro(10,0);
-				TextColored(item.nameColor, item.name);
+				TextColored(item.nameColor, item.name.c_str());
 			}
 			ImGui::EndChild();
 
 			imspaceMacro(0, 5);
-			ImGui::BeginChild("#chatbox-item-content", ImVec2(430, 20), false);
+			ImGui::BeginChild(string("#chatbox-item-content" + cName).c_str(), ImVec2(430, 20), false);
 			{
 				imspaceMacro(10, 0);
-				TextColored(item.chatColor, item.message);
+				TextColored(item.chatColor, item.message.c_str());
 			}
 			ImGui::EndChild();
 		}
@@ -167,16 +176,14 @@ void Menu::runCustomGui(LPDIRECT3DDEVICE9 pDevice, bool param) {
 
 			if (Button("Send", ImVec2(100, 40)))
 			{
-				ChatboxItem item;
+				ChatboxItem item = ChatboxItem();
 
 				item.chatColor = getZtkColor(255, 255, 255);
 				item.nameColor = getZtkColor(255, 150, 20);
-				item.name = "Noxy";
-				item.message = "bu bir mesajjjj";
+				item.name = "Noxy"; 
+				item.message = DDKmessage;
 
 				chatboxItems.push_back(item);
-
-				DDKmessage[0] = {};
 			}
 		}
 		ImGui::EndChild();
