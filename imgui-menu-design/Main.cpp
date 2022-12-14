@@ -7,8 +7,6 @@
 #include <tchar.h>
 
 
-
-
 #include "menu/Menu.h"
  
 // Global variables
@@ -65,11 +63,10 @@ int WINAPI WinMain(
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
     // Setup Dear ImGui style
-    ImGui::StyleColorsDark();
-    io.FontDefault = io.Fonts->AddFontFromFileTTF("C:/Windows/Fonts/Verdana.ttf", 18);
 
-    Menu::settings::fonts_GUIBIGFONT = io.Fonts->AddFontFromFileTTF("C:/Windows/Fonts/Verdana.ttf", 150);
-    Menu::settings::fonts_GUIBIGFONT2 = io.Fonts->AddFontFromFileTTF("C:/Windows/Fonts/Verdana.ttf", 50);
+	ImGui::StyleColorsDark();
+    io.FontDefault = io.Fonts->AddFontFromFileTTF("C:/Windows/Fonts/Calibri.ttf", 18);
+
     //ImGui::StyleColorsLight();
 
     // Setup Platform/Renderer backends
@@ -125,9 +122,7 @@ int WINAPI WinMain(
 
         
         Menu::runCustomGui(g_pd3dDevice, false);
-
-        if (GetAsyncKeyState(VK_XBUTTON2) & 1)
-            Menu::settings::isOpened = !Menu::settings::isOpened;
+        
 
         // Rendering
         ImGui::EndFrame();
